@@ -50,6 +50,7 @@ int main() {
     cout << "Part 1: " << sum << endl;
     sum = 0;
     for (auto &x: check){
+        /*
         bool wasIncorrect = false;
         bool flag = true;
         while (flag){
@@ -71,7 +72,26 @@ int main() {
                 
             }
         }
+        
         if (wasIncorrect){
+            sum += x[x.size() / 2];
+        }
+        */
+       bool flag = true;
+        int err_index = -1;
+        for (int i = 0;flag && i < x.size(); i++){
+            for (int j = i + 1; j < x.size(); j++){
+                if (find(graph[x[i]].begin(), graph[x[i]].end(), x[j]) == graph[x[i]].end()){
+                    flag = false;
+                    break;
+                }
+            }
+            
+        }
+        if (!flag){
+            sort(x.begin(), x.end(), [&graph](int a, int b){
+                return find(graph[a].begin(), graph[a].end(), b) != graph[a].end();
+            });
             sum += x[x.size() / 2];
         }
     }
